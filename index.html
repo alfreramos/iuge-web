@@ -231,6 +231,8 @@
     #nosotros {
       padding: 96px 0;
       background: var(--gray-lt);
+      position: relative;
+      z-index: 1;
     }
     .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .nosotros-text .section-subtitle { margin-bottom: 36px; }
@@ -265,7 +267,7 @@
     .accent-card p { color: rgba(255,255,255,.85); }
 
     /* ─── IMAGEN INTERIOR ───────────────────────────────────── */
-    #galeria { padding: 0; }
+    #galeria { padding: 0; position: relative; z-index: 1; }
     .galeria-grid { display: grid; grid-template-columns: 1fr 1fr; height: 380px; }
     .galeria-grid img { width: 100%; height: 100%; object-fit: cover; }
 
