@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iUGE — Instituto Universitario de Gestión</title>
+  <meta name="description" content="Instituto Universitario de Gestión — Gobernador Virasoro, Corrientes. Formando líderes y emprendedores. Carreras de grado desde 2027." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #3B4FBF;
+      --blue-dk: #2c3d99;
+      --gray:    #5a5f6e;
+      --gray-lt: #f4f5f8;
+      --white:   #ffffff;
+      --text:    #1a1d2e;
+      --accent:  #7B8FE8;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(59,79,191,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+
+    /* ─── Utility ───────────────────────────────────────────── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,79,191,.28); }
+    .btn-primary   { background: var(--blue); color: #fff; }
+    .btn-outline   { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover { background: var(--blue); color: #fff; }
+    .btn-white     { background: #fff; color: var(--blue); }
+    .section-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 560px;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 88px;
+    }
+    .nav-logo { height: 77px; }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+      font-weight: 500; font-size: .95rem;
+    }
+    .nav-links a { color: var(--text); transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { padding: 10px 22px; font-size: .92rem; }
+
+    /* hamburger */
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 16px;
+      padding: 20px 24px; background: #fff;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .mobile-menu a { font-weight: 500; font-size: 1.05rem; color: var(--text); }
+    .mobile-menu.open { display: flex; }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    #inicio {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #1a1d2e 0%, #2c3d99 50%, #3B4FBF 100%);
+      position: relative; overflow: hidden;
+      padding-top: 68px;
+    }
+    #inicio::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* floating shapes */
+    #inicio::after {
+      content: '';
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(123,143,232,.12);
+      top: -200px; right: -200px;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      padding: 80px 0;
+    }
+    .hero-text { color: #fff; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px; padding: 6px 16px;
+      font-size: .82rem; font-weight: 600; letter-spacing: .06em;
+      color: #c8d0f5; margin-bottom: 24px;
+    }
+    .hero-badge span { width: 8px; height: 8px; background: #7fffd4; border-radius: 50%; }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero-text h1 em { font-style: normal; color: #a8baff; }
+    .hero-text p {
+      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-card {
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px; padding: 32px;
+      color: #fff;
+    }
+    .hero-card-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #a8baff; margin-bottom: 20px;
+    }
+    .hero-card-careers { display: flex; flex-direction: column; gap: 16px; }
+    .career-pill {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.1);
+      border-radius: 12px; padding: 16px 20px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .career-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, #7B8FE8, #3B4FBF);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.2rem;
+    }
+    .career-pill strong { display: block; font-size: .95rem; font-weight: 600; }
+    .career-pill span { font-size: .82rem; color: rgba(255,255,255,.65); }
+    .hero-stat {
+      display: flex; gap: 24px; margin-top: 20px;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 800; color: #a8baff; }
+    .stat-desc { font-size: .75rem; color: rgba(255,255,255,.55); }
+
+    /* ─── CARRERAS ──────────────────────────────────────────── */
+    #carreras { padding: 96px 0; background: var(--white); }
+    .carreras-header { text-align: center; margin-bottom: 56px; }
+    .carreras-header .section-subtitle { margin: 0 auto; }
+    .careers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .career-card {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid #e8eaf0;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .career-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .career-card-head {
+      padding: 36px 36px 28px;
+      background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+      color: #fff;
+    }
+    .career-icon-lg {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 20px;
+    }
+    .career-card-head h3 {
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .career-card-head .duration {
+      font-size: .85rem; color: rgba(255,255,255,.75);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .career-card-body { padding: 28px 36px 36px; }
+    .career-card-body p { color: var(--gray); margin-bottom: 20px; line-height: 1.7; }
+    .career-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .career-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .93rem; color: var(--text);
+    }
+    .career-features li::before {
+      content: '✓';
+      background: #e8edf8; color: var(--blue);
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ─── POR QUÉ IUGE ──────────────────────────────────────── */
+    #nosotros {
+      padding: 96px 0;
+      background: var(--gray-lt);
+    }
+    .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .nosotros-text .section-subtitle { margin-bottom: 36px; }
+    .features-list { display: flex; flex-direction: column; gap: 20px; }
+    .feature-item { display: flex; gap: 16px; }
+    .feature-dot {
+      width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .feature-item h4 { font-weight: 600; margin-bottom: 4px; }
+    .feature-item p { font-size: .9rem; color: var(--gray); }
+    .nosotros-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .info-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .info-card.accent-card {
+      background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+      color: #fff; grid-column: span 2;
+    }
+    .info-card .big-num {
+      font-size: 2.4rem; font-weight: 800; color: var(--blue); line-height: 1;
+    }
+    .accent-card .big-num { color: #a8baff; }
+    .info-card .card-label { font-size: .82rem; color: var(--gray); margin-top: 4px; }
+    .accent-card .card-label { color: rgba(255,255,255,.7); }
+    .info-card p { font-size: .92rem; color: var(--gray); margin-top: 8px; }
+    .accent-card p { color: rgba(255,255,255,.85); }
+
+    /* ─── IMAGEN INTERIOR ───────────────────────────────────── */
+    #galeria { padding: 0; }
+    .galeria-grid { display: grid; grid-template-columns: 1fr 1fr; height: 380px; }
+    .galeria-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── CONTACTO ──────────────────────────────────────────── */
+    #contacto { padding: 96px 0; background: var(--white); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+    .contacto-info h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); margin-bottom: 16px; }
+    .contacto-info p { color: var(--gray); margin-bottom: 32px; line-height: 1.7; }
+    .contact-details { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: #e8edf8; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .contact-item strong { display: block; font-size: .85rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: .04em; }
+    .contact-item span { font-size: .95rem; }
+
+    /* Form */
+    .contact-form {
+      background: var(--gray-lt); border-radius: 20px; padding: 36px;
+    }
+    .form-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: .85rem; font-weight: 600; color: var(--gray); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid #dde0e8;
+      border-radius: 10px;
+      font-family: inherit; font-size: .95rem; color: var(--text);
+      background: #fff; outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; border: none; font-family: inherit; font-size: 1rem; }
+    .form-note { font-size: .78rem; color: var(--gray); text-align: center; margin-top: 12px; }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,.6);
+      padding: 48px 0 32px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 24px;
+    }
+    .footer-logo { height: 36px; filter: brightness(0) invert(1); opacity: .8; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: .9rem; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { text-align: center; font-size: .82rem; }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── SUCCESS MESSAGE ───────────────────────────────────── */
+    .form-success {
+      display: none; text-align: center; padding: 24px;
+      background: #eafaf1; border-radius: 12px;
+      color: #1a7a4a; font-weight: 600;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .careers-grid { grid-template-columns: 1fr; }
+      .nosotros-grid { grid-template-columns: 1fr; }
+      .contacto-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr; height: auto; }
+      .galeria-grid img { height: 220px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+    }
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 2rem; }
+      .nosotros-visual { grid-template-columns: 1fr; }
+      .info-card.accent-card { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<nav>
+  <div class="container nav-inner">
+    <img src="imagenes/logo-iuge.png" alt="iUGE — Instituto Universitario de Gestión" class="nav-logo" />
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#carreras">Carreras</a></li>
+      <li><a href="#nosotros">La Universidad</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="btn btn-primary nav-cta">Quiero inscribirme</a>
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio"    onclick="toggleMenu()">Inicio</a>
+    <a href="#carreras"  onclick="toggleMenu()">Carreras</a>
+    <a href="#nosotros"  onclick="toggleMenu()">La Universidad</a>
+    <a href="#contacto"  onclick="toggleMenu()">Contacto</a>
+    <a href="#contacto"  class="btn btn-primary" style="text-align:center" onclick="toggleMenu()">Quiero inscribirme</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════════ -->
+<section id="inicio">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge"><span></span> Inscripciones abiertas · Inicio 2027</div>
+        <h1>Formamos <em>Líderes</em> y<br />Emprendedores</h1>
+        <p>El nuevo Instituto Universitario de Gestión de Gobernador Virasoro llega para transformar la educación superior en Corrientes.</p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-white">Quiero inscribirme</a>
+          <a href="#carreras" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.4)">Ver carreras</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-label">Carreras de Grado · 2027</div>
+        <div class="hero-card-careers">
+          <div class="career-pill">
+            <div class="career-icon">📊</div>
+            <div>
+              <strong>Lic. en Administración de Empresas</strong>
+              <span>4 años · Título de grado</span>
+            </div>
+          </div>
+          <div class="career-pill">
+            <div class="career-icon">🧾</div>
+            <div>
+              <strong>Contador Público Nacional</strong>
+              <span>4 años · Título de grado</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-item"><div class="stat-num">2027</div><div class="stat-desc">Inicio de clases</div></div>
+          <div class="stat-item"><div class="stat-num">2</div><div class="stat-desc">Carreras de grado</div></div>
+          <div class="stat-item"><div class="stat-num">4</div><div class="stat-desc">Años de duración</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CARRERAS ════════════════════════════════════════════════ -->
+<section id="carreras">
+  <div class="container">
+    <div class="carreras-header reveal">
+      <div class="section-label">Oferta académica</div>
+      <h2 class="section-title">Nuestras carreras de grado</h2>
+      <p class="section-subtitle">Dos programas diseñados para formar profesionales comprometidos con el desarrollo regional, con alto impacto en el mercado laboral.</p>
+    </div>
+    <div class="careers-grid">
+
+      <div class="career-card reveal">
+        <div class="career-card-head">
+          <div class="career-icon-lg">📊</div>
+          <h3>Licenciatura en Administración de Empresas</h3>
+          <div class="duration">⏱ 4 años de duración</div>
+        </div>
+        <div class="career-card-body">
+          <p>Formate para dirigir organizaciones públicas y privadas, diseñar estrategias de crecimiento y liderar equipos en un contexto económico dinámico y competitivo.</p>
+          <ul class="career-features">
+            <li>Gestión estratégica y liderazgo organizacional</li>
+            <li>Finanzas corporativas y análisis económico</li>
+            <li>Marketing, ventas y gestión comercial</li>
+            <li>Emprendedurismo e innovación empresarial</li>
+            <li>Proyectos de impacto regional y social</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="career-card reveal">
+        <div class="career-card-head">
+          <div class="career-icon-lg">🧾</div>
+          <h3>Contador Público Nacional</h3>
+          <div class="duration">⏱ 4 años de duración</div>
+        </div>
+        <div class="career-card-body">
+          <p>Adquirí las competencias técnicas y éticas para ejercer la contaduría pública, asesorar a empresas e instituciones y contribuir a la transparencia económica.</p>
+          <ul class="career-features">
+            <li>Contabilidad general, patrimonial y de costos</li>
+            <li>Derecho tributario y legislación impositiva</li>
+            <li>Auditoría interna y externa</li>
+            <li>Economía, finanzas y mercados de capitales</li>
+            <li>Tecnología aplicada a la gestión contable</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ IMÁGENES ════════════════════════════════════════════════ -->
+<section id="galeria">
+  <div class="galeria-grid">
+    <img src="imagenes/jovenes-universitarios.jpg" alt="Estudiantes iUGE" />
+    <img src="imagenes/jovenes_universidad.png" alt="Estudiantes iUGE" />
+  </div>
+</section>
+
+<!-- ═══ POR QUÉ IUGE ════════════════════════════════════════════ -->
+<section id="nosotros">
+  <div class="container">
+    <div class="nosotros-grid">
+      <div class="nosotros-text reveal">
+        <div class="section-label">La universidad</div>
+        <h2 class="section-title">Una nueva universidad para el NEA</h2>
+        <p class="section-subtitle">iUGE nace con el compromiso de brindar educación universitaria de calidad en el corazón de la provincia de Corrientes, formando profesionales capaces de transformar su entorno.</p>
+        <div class="features-list" style="margin-top:32px">
+          <div class="feature-item">
+            <div class="feature-dot">📍</div>
+            <div>
+              <h4>Arraigo regional</h4>
+              <p>Localizada en Gobernador Virasoro, cerca de vos, sin necesidad de migrar a grandes ciudades para acceder a un título universitario.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot">🏛️</div>
+            <div>
+              <h4>Reconocimiento nacional</h4>
+              <p>Carreras con títulos habilitados a nivel nacional, que te abren puertas en todo el país.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot">💻</div>
+            <div>
+              <h4>Campus virtual</h4>
+              <p>Plataforma digital integrada para que puedas acceder a materiales, foros y actividades desde cualquier lugar.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot">🤝</div>
+            <div>
+              <h4>Compromiso con la comunidad</h4>
+              <p>Formamos profesionales comprometidos con el desarrollo social y económico de la región.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nosotros-visual reveal">
+        <div class="info-card">
+          <div class="big-num">2027</div>
+          <div class="card-label">Inicio de clases</div>
+          <p>Sé parte de la primera cohorte de estudiantes de iUGE.</p>
+        </div>
+        <div class="info-card">
+          <div class="big-num">2</div>
+          <div class="card-label">Carreras de grado</div>
+          <p>Administración y Contaduría: las más demandadas del mercado.</p>
+        </div>
+        <div class="info-card accent-card">
+          <div class="big-num">Gobernador Virasoro</div>
+          <div class="card-label">Corrientes, Argentina</div>
+          <p>La primera universidad de gestión con sede en el corazón del NEA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACTO ════════════════════════════════════════════════ -->
+<section id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info reveal">
+        <div class="section-label">Inscribite</div>
+        <h2>¿Te interesa estudiar en iUGE?</h2>
+        <p>Dejanos tus datos y uno de nuestros asesores se va a comunicar con vos para darte toda la información que necesitás sobre las carreras, el proceso de inscripción y los requisitos de ingreso.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Dirección</strong>
+              <span>Gobernador Virasoro, Provincia de Corrientes</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>info@iuge.edu.ar</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>Consultanos por WhatsApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-title">Dejá tus datos y te contactamos</div>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido *</label>
+              <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+54 9 ..." />
+          </div>
+          <div class="form-group">
+            <label for="carrera">Carrera de interés *</label>
+            <select id="carrera" name="carrera" required>
+              <option value="" disabled selected>Seleccioná una carrera</option>
+              <option value="administracion">Lic. en Administración de Empresas</option>
+              <option value="contaduria">Contador Público Nacional</option>
+              <option value="ambas">Quiero información de ambas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje (opcional)</label>
+            <textarea id="mensaje" name="mensaje" placeholder="¿Tenés alguna consulta en particular?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Enviar consulta</button>
+          <div class="form-note">Al enviar este formulario aceptás que nos comuniquemos con vos para brindarte información académica.</div>
+        </form>
+        <div class="form-success" id="formSuccess">
+          ✅ ¡Recibimos tu consulta! Te contactaremos a la brevedad.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <img src="imagenes/logo-iuge.png" alt="iUGE" class="footer-logo" />
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#carreras">Carreras</a>
+        <a href="#nosotros">La Universidad</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Instituto Universitario de Gestión — Gobernador Virasoro, Corrientes, Argentina</p>
+      <p style="margin-top:6px">Formando líderes y emprendedores comprometidos con la sociedad</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──────────────────────────────
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── Scroll reveal ────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Nav background on scroll ─────────────────
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 2px 16px rgba(0,0,0,.1)' : 'none';
+  });
+
+  // ── Form submit ──────────────────────────────
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
